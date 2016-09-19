@@ -1,0 +1,11 @@
+{
+    "name": "melkov/yii2-tools",
+    "description": "Some components and helpers for yii2 framework",
+    "authors": [
+        {
+            "name": "AntonSmorodin",
+            "email": "anton@smorodin.me"
+        }
+    ],
+    "require": {}
+}
