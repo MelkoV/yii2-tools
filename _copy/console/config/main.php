@@ -22,7 +22,8 @@ return [
             'modelQueryNamespace' => 'common\models\query',
             'overwrite'      => true,
             'defaultAction'  => 'models',
-            'interactive'    => false
+            'interactive'    => false,
+            'messageCategory' => 'label'
         ],
 
     ],

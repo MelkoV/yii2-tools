@@ -58,9 +58,6 @@ class CurrentUser
         if (!$key) {
             $out = '';
             foreach ($session->getAllFlashes(false) as $key => $value) {
-                if (in_array($key, self::$excludeKeys)) {
-                    continue;
-                }
                 $out .= self::showFlash($key);
             }
             return $out;

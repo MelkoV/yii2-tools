@@ -12,7 +12,14 @@ use common\models\LoginForm;
  */
 class SiteController extends Controller
 {
-    public $layout = "blank";
+    public function init()
+    {
+        if (Yii::$app->user->isGuest) {
+            $this->layout = "blank";
+        }
+
+        parent::init();
+    }
 
     /**
      * @inheritdoc
