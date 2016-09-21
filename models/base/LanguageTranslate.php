@@ -51,8 +51,8 @@ abstract class LanguageTranslate extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'language' => Yii::t('app', 'Language'),
-            'translation' => Yii::t('app', 'Translation'),
+            'language' => Yii::t('translate', 'Language'),
+            'translation' => Yii::t('translate', 'Translation'),
         ];
     }
 

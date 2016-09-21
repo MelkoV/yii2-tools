@@ -48,8 +48,8 @@ abstract class LanguageSource extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'category' => Yii::t('app', 'Category'),
-            'message' => Yii::t('app', 'Message'),
+            'category' => Yii::t('translate', 'Category'),
+            'message' => Yii::t('translate', 'Message'),
         ];
     }
 
