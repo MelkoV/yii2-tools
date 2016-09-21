@@ -23,7 +23,7 @@ class m160914_235448_multilang extends Migration
         ], $tableOptions);
 
         $this->batchInsert('lang', ['url', 'local', 'name', 'default', 'date_update', 'date_create'], [
-            ['en', 'en-EN', 'English', false, DateHelper::now(), DateHelper::now()],
+            ['en', 'en-US', 'English', false, DateHelper::now(), DateHelper::now()],
             ['ru', 'ru-RU', 'Русский', true, DateHelper::now(), DateHelper::now()],
         ]);
     }
