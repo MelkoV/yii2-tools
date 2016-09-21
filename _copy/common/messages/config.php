@@ -34,6 +34,7 @@ return [
         '*.php',
     ],
     'format' => 'php',
+//    'format' => 'db',
     'db' => 'db',
     'sourceMessageTable' => '{{%language_source}}',
     'messageTable' => '{{%language_translate}}',
