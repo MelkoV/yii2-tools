@@ -119,10 +119,10 @@ AppAsset::register($this);
             $icon = '<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>';
             echo Menu::widget([
                 'items' => [
-                    ['label' => 'Главная', 'url' => ['site/index']],
-                    ['label' => 'Аккаунт ' . $icon, 'url' => ['account'], 'visible' => true, 'options'=>['class'=>'treeview'], "items" => [
-                        ["label" => "Редактировать информацию", "url" => ["account/update"], "visible" => true],
-                        ["label" => "Сменить пароль", "url" => ["account/password"], "visible" => true],
+                    ['label' => '<i class="fa fa-dashboard"></i> <span>Главная</span>', 'url' => ['site/index']],
+                    ['label' => '<i class="fa fa-user"></i> <span>Пользователь</span> ' . $icon, 'url' => ['account'], 'visible' => true, 'options'=>['class'=>'treeview'], "items" => [
+                        ["label" => '<i class="fa fa-circle-o"></i> Редактировать', "url" => ["account/update"], "visible" => true],
+                        ["label" => '<i class="fa fa-circle-o"></i> Сменить пароль', "url" => ["account/password"], "visible" => true],
                     ]],
 
                 ],
