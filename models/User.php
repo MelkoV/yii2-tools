@@ -22,7 +22,7 @@ class User extends BaseUser implements IdentityInterface
     {
         return array_merge(parent::rules(), [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+//            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ]);
     }
 
