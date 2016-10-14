@@ -19,15 +19,26 @@ class <?= $className ?> extends Migration
 //        return ["Controller:Action" => ["role1", "role2"]];
     }
 
+    public function getNewTables()
+    {
+        return [];
+    }
+
+    public function getNewColumns()
+    {
+        return [];
+    }
+
     public function safeUp()
     {
-
+        $this->createTables();
+        $this->addColumns();
     }
 
     public function safeDown()
     {
-        echo "<?= $className ?> cannot be reverted.\n";
-        return false;
+        $this->dropTables();
+        $this->dropColumns();
     }
 
     /*

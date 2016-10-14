@@ -4,10 +4,36 @@ namespace melkov\components\console;
 
 class Migration extends \yii\db\Migration
 {
+    const TYPE_FOREIGN_KEY = "foreign_key";
+
+    public $tableOptions = null;
+
+    protected $foreignKeys = [];
+
     public function getOperations()
     {
 //        return ["Controller:Action" => ["role1", "role2"]];
         return [];
+    }
+
+    public function getNewTables()
+    {
+        return [];
+    }
+
+    public function getNewColumns()
+    {
+        return [];
+    }
+
+
+
+    public function init()
+    {
+        parent::init();
+        if ($this->db->driverName === 'mysql') {
+            $this->tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
     }
 
     /**
@@ -110,6 +136,49 @@ class Migration extends \yii\db\Migration
     {
         $obj = \Yii::$app->authManager->getRole($role);
         \Yii::$app->authManager->assign($obj, $userId);
+    }
+
+    public function foreignKey($table, $column, $notNull = false, $length = null)
+    {
+        return ["type" => self::TYPE_FOREIGN_KEY, "fk_table" => $table, "fk_column" => $column, "length" => $length, "not_null" => $notNull];
+    }
+
+    public function createTables()
+    {
+        foreach ($this->getNewTables() as $tableName => $columns) {
+            foreach ($columns as $name => &$column) {
+                if (is_array($column) && isset($column["type"])) {
+                    if ($column["type"] == self::TYPE_FOREIGN_KEY) {
+                        $fkName = explode("_", $name);
+                        array_pop($fkName);
+                        array_unshift($fkName, $tableName);
+                        $fkName[] = "fk";
+                        $this->foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
+                        $notNull = $column["not_null"];
+                        $column = $this->integer();
+                        if ($notNull) {
+                            $column->notNull();
+                        }
+
+                    }
+                }
+            }
+            $this->createTable($tableName, $columns, $this->tableOptions);
+        }
+
+        foreach ($this->foreignKeys as $fk) {
+            $this->addForeignKey($fk[0], $fk[1], $fk[2], $fk[3], $fk[4]);
+        }
+
+    }
+
+    public function dropTables()
+    {
+        $tables = array_keys($this->getNewTables());
+        $count = count($tables);
+        for ($i = 0; $i < $count; $i++) {
+            $this->dropTable(array_pop($tables));
+        }
     }
 
     /**

@@ -5,6 +5,9 @@ use melkov\components\helpers\DateHelper;
 
 class m160914_235448_multilang extends Migration
 {
+
+    // yii migrate --migrationPath=@melkov/migrations/multilang
+
     public function safeUp()
     {
         $tableOptions = null;
