@@ -143,9 +143,9 @@ class Migration extends \yii\db\Migration
         return ["type" => self::TYPE_FOREIGN_KEY, "fk_table" => $table, "fk_column" => $column, "length" => $length, "not_null" => $notNull];
     }
 
-    public function createTables()
+    public function createTables($tables = [])
     {
-        foreach ($this->getNewTables() as $tableName => $columns) {
+        foreach ($tables as $tableName => $columns) {
             foreach ($columns as $name => &$column) {
                 if (is_array($column) && isset($column["type"])) {
                     if ($column["type"] == self::TYPE_FOREIGN_KEY) {
@@ -172,9 +172,10 @@ class Migration extends \yii\db\Migration
 
     }
 
-    public function dropTables()
+
+    public function dropTables($tables = [])
     {
-        $tables = array_keys($this->getNewTables());
+        $tables = array_keys($tables);
         $count = count($tables);
         for ($i = 0; $i < $count; $i++) {
             $this->dropTable(array_pop($tables));

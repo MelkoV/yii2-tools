@@ -19,7 +19,7 @@ class ModelGenerator extends Generator
             }
         }
         if ($columns) {
-            $rules[] = "[[" . implode(", ", $columns) . "], 'trim']";
+            array_unshift($rules, "[[" . implode(", ", $columns) . "], 'trim', 'skipOnEmpty' => true]");
         }
         return $rules;
     }

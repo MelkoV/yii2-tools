@@ -31,14 +31,14 @@ class <?= $className ?> extends Migration
 
     public function safeUp()
     {
-        $this->createTables();
-        $this->addColumns();
+        $this->createTables($this->getNewTables());
+        $this->addColumns($this->getNewColumns());
     }
 
     public function safeDown()
     {
-        $this->dropTables();
-        $this->dropColumns();
+        $this->dropTables($this->getNewTables());
+        $this->dropColumns($this->getNewColumns());
     }
 
     /*
