@@ -49,11 +49,11 @@ class RbacControlFilter extends ActionFilter
      */
     protected function denyAccess($user)
     {
-//        if ($user->getIsGuest()) {
-//            $user->loginRequired();
-//        } else {
+        if ($user->getIsGuest()) {
+            $user->loginRequired();
+        } else {
             throw new ForbiddenHttpException(\Yii::t('yii', 'You are not allowed to perform this action.'));
-//        }
+        }
     }
 
     private function getName($str)

@@ -5,6 +5,13 @@ namespace melkov\db;
 class ActiveRecord extends \yii\db\ActiveRecord
 {
     /**
+     * return [
+     *      "scenario" => [
+     *          "allow" => [],
+     *          "disallow" => [],
+     *      ]
+     * ];
+     *
      * @return array
      */
     protected function loadAccess()

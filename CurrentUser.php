@@ -13,6 +13,27 @@ class CurrentUser
 {
 
     /**
+     * Alias for \Yii::$app->user->id
+     *
+     * @return int|null|string
+     */
+    public static function getId()
+    {
+        return \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
+    }
+
+    /**
+     * Alias for \Yii::$app->user->can()
+     *
+     * @param $operation
+     * @return bool
+     */
+    public static function can($operation)
+    {
+        return \Yii::$app->user->can($operation);
+    }
+
+    /**
      * @param Model|string $message
      */
     public static function setFlashError($message)

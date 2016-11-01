@@ -4,6 +4,9 @@ use yii\db\Migration;
 
 class m130524_201442_init extends Migration
 {
+	
+	// yii migrate --migrationPath=@yii/rbac/migrations
+	
     public function up()
     {
         $tableOptions = null;
