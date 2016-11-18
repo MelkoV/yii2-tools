@@ -48,7 +48,7 @@ class m141016_150234_geo extends Migration
     public function safeUp()
     {
         $path = Yii::getAlias("@melkov/migrations/geo");
-        $this->createTables();
+        $this->createTables($this->getNewTables());
         $fp = fopen($path . DIRECTORY_SEPARATOR . "cities.txt", "r");
 
         $model = new \melkov\models\GeoCountry();
@@ -117,7 +117,7 @@ class m141016_150234_geo extends Migration
 
     public function safeDown()
     {
-        $this->dropTables();
+        $this->dropTables($this->getNewTables());
     }
 
 

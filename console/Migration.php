@@ -171,7 +171,16 @@ class Migration extends \yii\db\Migration
         }
 
     }
-
+	
+	public function addColumns($columns = [])
+	{
+		
+	}
+	
+	public function dropColumns($columns = [])
+	{
+		
+	}
 
     public function dropTables($tables = [])
     {

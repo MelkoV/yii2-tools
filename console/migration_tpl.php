@@ -33,12 +33,14 @@ class <?= $className ?> extends Migration
     {
         $this->createTables($this->getNewTables());
         $this->addColumns($this->getNewColumns());
+		$this->addOperationsAccesses();
     }
 
     public function safeDown()
     {
         $this->dropTables($this->getNewTables());
         $this->dropColumns($this->getNewColumns());
+		$this->revokeOperationsAccesses();
     }
 
     /*
