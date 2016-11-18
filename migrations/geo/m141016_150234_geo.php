@@ -37,8 +37,8 @@ class m141016_150234_geo extends Migration
             "geo_ip" => [
                 "id" => $this->primaryKey(),
                 "city_id" => $this->foreignKey("geo_city", "id", true),
-                "start" => "inet",
-                "end" => "inet"
+                "start" => $this->db->driverName === "mysql" ? $this->string() : "inet",
+                "end" => $this->db->driverName === "mysql" ? $this->string() : "inet",
             ],
         ];
     }
