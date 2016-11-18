@@ -57,7 +57,7 @@ abstract class GeoCountry extends \melkov\db\ActiveRecord
      */
     public function getGeoFederalDistricts()
     {
-        return $this->hasMany(\common\models\GeoFederalDistrict::className(), ['country_id' => 'id']);
+        return $this->hasMany(\melkov\models\GeoFederalDistrict::className(), ['country_id' => 'id']);
     }
 
 
@@ -68,7 +68,7 @@ abstract class GeoCountry extends \melkov\db\ActiveRecord
      */
     public static function find()
     {
-        return new \common\models\query\GeoCountryQuery(get_called_class());
+        return new \melkov\models\query\GeoCountryQuery(get_called_class());
     }
 
 

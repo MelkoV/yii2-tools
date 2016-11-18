@@ -63,7 +63,7 @@ abstract class GeoIp extends \melkov\db\ActiveRecord
      */
     public function getCity()
     {
-        return $this->hasOne(\common\models\GeoCity::className(), ['id' => 'city_id']);
+        return $this->hasOne(\melkov\models\GeoCity::className(), ['id' => 'city_id']);
     }
 
 
@@ -74,7 +74,7 @@ abstract class GeoIp extends \melkov\db\ActiveRecord
      */
     public static function find()
     {
-        return new \common\models\query\GeoIpQuery(get_called_class());
+        return new \melkov\models\query\GeoIpQuery(get_called_class());
     }
 
 

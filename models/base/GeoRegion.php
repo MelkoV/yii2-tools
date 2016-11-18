@@ -62,7 +62,7 @@ abstract class GeoRegion extends \melkov\db\ActiveRecord
      */
     public function getGeoCities()
     {
-        return $this->hasMany(\common\models\GeoCity::className(), ['region_id' => 'id']);
+        return $this->hasMany(\melkov\models\GeoCity::className(), ['region_id' => 'id']);
     }
 
     /**
@@ -70,7 +70,7 @@ abstract class GeoRegion extends \melkov\db\ActiveRecord
      */
     public function getFederalDistrict()
     {
-        return $this->hasOne(\common\models\GeoFederalDistrict::className(), ['id' => 'federal_district_id']);
+        return $this->hasOne(\melkov\models\GeoFederalDistrict::className(), ['id' => 'federal_district_id']);
     }
 
 
@@ -81,7 +81,7 @@ abstract class GeoRegion extends \melkov\db\ActiveRecord
      */
     public static function find()
     {
-        return new \common\models\query\GeoRegionQuery(get_called_class());
+        return new \melkov\models\query\GeoRegionQuery(get_called_class());
     }
 
 

@@ -74,7 +74,7 @@ abstract class GeoCity extends \melkov\db\ActiveRecord
      */
     public function getRegion()
     {
-        return $this->hasOne(\common\models\GeoRegion::className(), ['id' => 'region_id']);
+        return $this->hasOne(\melkov\models\GeoRegion::className(), ['id' => 'region_id']);
     }
 
     /**
@@ -82,7 +82,7 @@ abstract class GeoCity extends \melkov\db\ActiveRecord
      */
     public function getGeoIps()
     {
-        return $this->hasMany(\common\models\GeoIp::className(), ['city_id' => 'id']);
+        return $this->hasMany(\melkov\models\GeoIp::className(), ['city_id' => 'id']);
     }
 
 
@@ -93,7 +93,7 @@ abstract class GeoCity extends \melkov\db\ActiveRecord
      */
     public static function find()
     {
-        return new \common\models\query\GeoCityQuery(get_called_class());
+        return new \melkov\models\query\GeoCityQuery(get_called_class());
     }
 
 
