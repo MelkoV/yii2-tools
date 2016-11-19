@@ -1,11 +1,11 @@
 <?php
 
-namespace common\models\query;
+namespace melkov\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\GeoCity]].
+ * This is the ActiveQuery class for [[\melkov\models\GeoCity]].
  *
- * @see \common\models\GeoCity
+ * @see \melkov\models\GeoCity
  */
 class GeoCityQuery extends \yii\db\ActiveQuery
 {
@@ -17,7 +17,7 @@ class GeoCityQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\GeoCity[]|array
+     * @return \melkov\models\GeoCity[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class GeoCityQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\GeoCity|array|null
+     * @return \melkov\models\GeoCity|array|null
      */
     public function one($db = null)
     {

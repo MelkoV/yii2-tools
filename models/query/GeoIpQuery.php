@@ -1,11 +1,11 @@
 <?php
 
-namespace common\models\query;
+namespace melkov\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\GeoIp]].
+ * This is the ActiveQuery class for [[\melkov\models\GeoIp]].
  *
- * @see \common\models\GeoIp
+ * @see \melkov\models\GeoIp
  */
 class GeoIpQuery extends \yii\db\ActiveQuery
 {
@@ -17,7 +17,7 @@ class GeoIpQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\GeoIp[]|array
+     * @return \melkov\models\GeoIp[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class GeoIpQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\GeoIp|array|null
+     * @return \melkov\models\GeoIp|array|null
      */
     public function one($db = null)
     {
