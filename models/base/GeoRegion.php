@@ -13,8 +13,8 @@ use Yii;
  * @property string $name
  * @property integer $federal_district_id
  *
- * @property \common\models\GeoCity[] $geoCities
- * @property \common\models\GeoFederalDistrict $federalDistrict
+ * @property \melkov\models\GeoCity[] $geoCities
+ * @property \melkov\models\GeoFederalDistrict $federalDistrict
  * @property string $aliasModel
  */
 abstract class GeoRegion extends \melkov\db\ActiveRecord 
@@ -77,7 +77,7 @@ abstract class GeoRegion extends \melkov\db\ActiveRecord
     
     /**
      * @inheritdoc
-     * @return \common\models\query\GeoRegionQuery the active query used by this AR class.
+     * @return \melkov\models\query\GeoRegionQuery the active query used by this AR class.
      */
     public static function find()
     {

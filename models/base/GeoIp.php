@@ -14,7 +14,7 @@ use Yii;
  * @property string $start
  * @property string $end
  *
- * @property \common\models\GeoCity $city
+ * @property \melkov\models\GeoCity $city
  * @property string $aliasModel
  */
 abstract class GeoIp extends \melkov\db\ActiveRecord 
@@ -70,7 +70,7 @@ abstract class GeoIp extends \melkov\db\ActiveRecord
     
     /**
      * @inheritdoc
-     * @return \common\models\query\GeoIpQuery the active query used by this AR class.
+     * @return \melkov\models\query\GeoIpQuery the active query used by this AR class.
      */
     public static function find()
     {

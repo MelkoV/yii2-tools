@@ -18,8 +18,8 @@ use Yii;
  * @property string $lat
  * @property string $lon
  *
- * @property \common\models\GeoRegion $region
- * @property \common\models\GeoIp[] $geoIps
+ * @property \melkov\models\GeoRegion $region
+ * @property \nelkov\models\GeoIp[] $geoIps
  * @property string $aliasModel
  */
 abstract class GeoCity extends \melkov\db\ActiveRecord 
@@ -89,7 +89,7 @@ abstract class GeoCity extends \melkov\db\ActiveRecord
     
     /**
      * @inheritdoc
-     * @return \common\models\query\GeoCityQuery the active query used by this AR class.
+     * @return \melkov\models\query\GeoCityQuery the active query used by this AR class.
      */
     public static function find()
     {
