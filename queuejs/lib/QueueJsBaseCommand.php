@@ -30,8 +30,9 @@ class QueueJsBaseCommand extends Controller
             $id = StringHelper::sub($id, StringHelper::len(\Yii::$app->queueJs->prefix));
         }
         if (isset($params[0])) {
-            $params = Json::decode($params[0]);
+            $params = Json::decode(urldecode($params[0]));
         }
+
         return parent::runAction($id, $params);
     }
 
