@@ -23,7 +23,7 @@ return [
             'overwrite'      => true,
             'defaultAction'  => 'models',
             'interactive'    => false,
-            'messageCategory' => 'label',
+            'modelMessageCategory' => 'label',
 			"template" => "melkov"
         ],
 
