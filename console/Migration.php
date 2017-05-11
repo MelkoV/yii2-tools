@@ -151,7 +151,8 @@ class Migration extends \yii\db\Migration
                     if ($column["type"] == self::TYPE_FOREIGN_KEY) {
                         $fkName = explode("_", $name);
                         array_pop($fkName);
-                        array_unshift($fkName, $tableName);
+                        $tableNameImp = strtr($tableName, ["`" => "", "'" => "", '"' => '']);
+                        array_unshift($fkName, $tableNameImp);
                         $fkName[] = "fk";
                         $this->foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
                         $notNull = $column["not_null"];
