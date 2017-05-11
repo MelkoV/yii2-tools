@@ -24,7 +24,8 @@ return [
             'defaultAction'  => 'models',
             'interactive'    => false,
             'modelMessageCategory' => 'label',
-			"template" => "melkov"
+			"template" => "melkov",
+			'tablePrefix' => '',
         ],
 
     ],
