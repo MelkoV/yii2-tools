@@ -37,7 +37,7 @@ use yii\behaviors\TimestampBehavior;
 <?php endif; ?>
 
 /**
- * This is the base-model class for table "<?= $tableName ?>".
+ * This is the base-model class for table "<?= $tableNameSh ?>".
  *
 <?php foreach ($tableSchema->columns as $column): ?>
  * @property <?= "{$column->phpType} \${$column->name}\n" ?>
@@ -83,7 +83,7 @@ if(!empty($enum)){
      */
     public static function tableName()
     {
-        return '{{%<?= $tableName ?>}}';
+        return '{{%<?= $tableNameSh ?>}}';
     }
 
 <?php if (isset($translation) || !empty($blameable) || !empty($timestamp)): ?>

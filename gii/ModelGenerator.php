@@ -48,11 +48,14 @@ class ModelGenerator extends Generator
             $tableSchema = $db->getTableSchema($tableName);
 
             if ($this->tablePrefix && strpos($tableName, $this->tablePrefix) === 0) {
-                $tableName = substr($tableName, strlen($this->tablePrefix));
+                $tableNameSh = substr($tableName, strlen($this->tablePrefix));
+            } else {
+                $tableNameSh = $tableName;
             }
 
             $params = [
                 'tableName' => $tableName,
+                'tableNameSh' => $tableNameSh,
                 'className' => $className,
                 'queryClassName' => $queryClassName,
                 'tableSchema' => $tableSchema,

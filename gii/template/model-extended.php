@@ -21,7 +21,7 @@ use Yii;
 use \<?= $generator->ns ?>\base\<?= $className ?> as Base<?= $className ?>;
 
 /**
- * This is the model class for table "<?= $tableName ?>".
+ * This is the model class for table "<?= $tableNameSh ?>".
  */
 class <?= $className ?> extends Base<?= $className . "\n" ?>
 {
