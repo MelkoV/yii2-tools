@@ -47,4 +47,18 @@ class ActiveRecord extends \yii\db\ActiveRecord
             }
         }
     }
+
+    public function attributeDescriptions()
+    {
+        return [];
+    }
+
+    public function getAttributeDescription($name)
+    {
+        $descriptions = $this->attributeDescriptions();
+        if (isset($descriptions[$name])) {
+            return $descriptions[$name];
+        }
+        return null;
+    }
 }
