@@ -26,13 +26,23 @@ class Migration extends \yii\db\Migration
         return [];
     }
 
-
+    public function depends()
+    {
+        return [];
+    }
 
     public function init()
     {
         parent::init();
         if ($this->db->driverName === 'mysql') {
             $this->tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
+        foreach ($this->depends() as $depend) {
+            echo "\nApply ".$depend."\n";
+            exec("php yii migrate --interactive=0 --migrationPath=" . $depend, $out);
+            foreach ($out as $line) {
+                echo $line . "\n";
+            }
         }
     }
 
