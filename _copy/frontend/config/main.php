@@ -15,7 +15,7 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-//            'class' => 'melkov\components\LangUrlManager',
+//            'class' => 'melkov\LangUrlManager',
             'rules' => [
 //                '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
                 '/' => 'site/index',

@@ -1,6 +1,6 @@
 <?php
 
-use melkov\components\console\Migration;
+use melkov\console\Migration;
 
 class m141016_150234_geo extends Migration
 {

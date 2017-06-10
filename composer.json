@@ -23,10 +23,10 @@
   },
   "autoload": {
     "psr-4": {
-      "melkov\\components\\": ""
+      "melkov\\": ""
     }
   },
   "extra": {
-    "bootstrap": "melkov\\components\\Bootstrap"
+    "bootstrap": "melkov\\Bootstrap"
   }
 }

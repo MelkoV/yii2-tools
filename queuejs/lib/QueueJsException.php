@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\components\queuejs\lib;
+namespace melkov\queuejs\lib;
 
 use yii\base\Exception;
 

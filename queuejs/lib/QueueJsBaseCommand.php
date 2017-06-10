@@ -1,8 +1,8 @@
 <?php
 
-namespace melkov\components\queuejs\lib;
+namespace melkov\queuejs\lib;
 
-use melkov\components\helpers\StringHelper;
+use melkov\helpers\StringHelper;
 use yii\console\Controller;
 use yii\helpers\Json;
 

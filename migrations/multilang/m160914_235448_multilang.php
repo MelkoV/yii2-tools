@@ -1,7 +1,7 @@
 <?php
 
-use melkov\components\console\Migration;
-use melkov\components\helpers\DateHelper;
+use melkov\console\Migration;
+use melkov\helpers\DateHelper;
 
 class m160914_235448_multilang extends Migration
 {

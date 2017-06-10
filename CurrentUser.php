@@ -4,7 +4,7 @@
  * Orig: https://github.com/carono/yii2-components/blob/master/CurrentUser.php
  */
 
-namespace melkov\components;
+namespace melkov;
 
 use yii\base\Model;
 use yii\helpers\Html;

@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\components\console;
+namespace melkov\console;
 
 class Migration extends \yii\db\Migration
 {

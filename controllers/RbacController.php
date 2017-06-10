@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\components\controllers;
+namespace melkov\controllers;
 
 use melkov\filters\RbacControlFilter;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\components;
+namespace melkov;
 
 class App
 {

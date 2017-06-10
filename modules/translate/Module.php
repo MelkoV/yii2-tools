@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\components\modules\translate;
+namespace melkov\modules\translate;
 
 class Module extends \yii\base\Module
 {

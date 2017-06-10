@@ -1,8 +1,8 @@
 <?php
 
-namespace melkov\components\queuejs;
+namespace melkov\queuejs;
 
-use melkov\components\queuejs\lib\QueueJsException;
+use melkov\queuejs\lib\QueueJsException;
 use yii\base\Component;
 
 class QueueJs extends Component

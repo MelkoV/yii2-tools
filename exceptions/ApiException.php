@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\components\exceptions;
+namespace melkov\exceptions;
 
 use yii\base\Exception;
 

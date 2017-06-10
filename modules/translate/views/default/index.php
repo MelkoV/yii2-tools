@@ -3,10 +3,10 @@
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var melkov\components\models\search\LanguageSource $searchModel
+ * @var melkov\models\search\LanguageSource $searchModel
  */
 
-use melkov\components\models\LanguageSource;
+use melkov\models\LanguageSource;
 use yii\grid\GridView;
 
 $this->title = Yii::t("translate", "Translate Module");
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 "attribute" => "category",
-                "filter" => \melkov\components\helpers\ArrayHelper::map(LanguageSource::find()->select("category")->groupBy("category")->orderBy("category")->all(), "category", "category")
+                "filter" => \melkov\helpers\ArrayHelper::map(LanguageSource::find()->select("category")->groupBy("category")->orderBy("category")->all(), "category", "category")
             ],
             [
                 "attribute" => "message",
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
         ];
-        foreach (\melkov\components\models\Lang::find()->all() as $lang) {
+        foreach (\melkov\models\Lang::find()->all() as $lang) {
             $columns[] = [
                 "header" => Yii::t("translate", "Message") . " " . $lang->name,
                 "value" => function ($model) use ($lang) {

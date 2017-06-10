@@ -4,11 +4,11 @@
  * orig: https://habrahabr.ru/post/226931/
  */
 
-namespace melkov\components;
+namespace melkov;
 
 use Yii;
 use yii\web\Request;
-use melkov\components\models\Lang;
+use melkov\models\Lang;
 
 class LangRequest extends Request
 {

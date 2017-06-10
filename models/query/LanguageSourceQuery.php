@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\components\models\query;
+namespace melkov\models\query;
 
 /**
  * This is the ActiveQuery class for [[\common\models\LanguageSource]].
@@ -17,7 +17,7 @@ class LanguageSourceQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\components\models\LanguageSource[]|array
+     * @return \melkov\models\LanguageSource[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class LanguageSourceQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\components\models\LanguageSource|array|null
+     * @return \melkov\models\LanguageSource|array|null
      */
     public function one($db = null)
     {

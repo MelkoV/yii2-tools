@@ -1,5 +1,5 @@
 <?php
-namespace melkov\components;
+namespace melkov;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 /**

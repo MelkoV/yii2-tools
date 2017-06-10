@@ -1,9 +1,9 @@
 <?php
 
-namespace melkov\components\models;
+namespace melkov\models;
 
 use Yii;
-use \melkov\components\models\base\LanguageTranslate as BaseLanguageTranslate;
+use \melkov\models\base\LanguageTranslate as BaseLanguageTranslate;
 
 /**
  * This is the model class for table "language_translate".
