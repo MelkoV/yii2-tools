@@ -1,9 +1,9 @@
 <?php
 
-namespace melkov\models;
+namespace melkov\tools\models;
 
 use Yii;
-use \melkov\models\base\GeoFederalDistrict as BaseGeoFederalDistrict;
+use \melkov\tools\models\base\GeoFederalDistrict as BaseGeoFederalDistrict;
 
 /**
  * This is the model class for table "geo_federal_district".

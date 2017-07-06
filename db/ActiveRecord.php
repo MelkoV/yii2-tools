@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\db;
+namespace melkov\tools\db;
 
 class ActiveRecord extends \yii\db\ActiveRecord
 {

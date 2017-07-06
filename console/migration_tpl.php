@@ -9,7 +9,7 @@ echo "<?php\n";
 ?>
 
 // use yii\db\Schema;
-use melkov\console\Migration;
+use melkov\tools\console\Migration;
 
 class <?= $className ?> extends Migration
 {

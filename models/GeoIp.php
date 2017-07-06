@@ -1,9 +1,9 @@
 <?php
 
-namespace melkov\models;
+namespace melkov\tools\models;
 
 use Yii;
-use \melkov\models\base\GeoIp as BaseGeoIp;
+use \melkov\tools\models\base\GeoIp as BaseGeoIp;
 
 /**
  * This is the model class for table "geo_ip".

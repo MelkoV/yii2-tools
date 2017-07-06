@@ -9,7 +9,7 @@ use yii\helpers\StringHelper;
 
 /**
  * @var yii\web\View $this
- * @var melkov\gii\ModelGenerator $generator
+ * @var melkov\tools\gii\ModelGenerator $generator
  * @var string $tableName full table name
  * @var string $className class name
  * @var yii\db\TableSchema $tableSchema
@@ -50,7 +50,7 @@ use yii\behaviors\TimestampBehavior;
 <?php endif; ?>
  * @property string $aliasModel
  */
-abstract class <?= $className ?> extends \melkov\db\ActiveRecord <?= "\n" ?>
+abstract class <?= $className ?> extends \melkov\tools\db\ActiveRecord <?= "\n" ?>
 {
 
 <?php

@@ -1,12 +1,12 @@
 <?php
 
-use melkov\console\Migration;
-use melkov\helpers\DateHelper;
+use melkov\tools\console\Migration;
+use melkov\tools\helpers\DateHelper;
 
 class m160914_235448_multilang extends Migration
 {
 
-    // yii migrate --migrationPath=@melkov/migrations/multilang
+    // yii migrate --migrationPath=@melkov/tools/migrations/multilang
 
     public function safeUp()
     {

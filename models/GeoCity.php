@@ -1,9 +1,9 @@
 <?php
 
-namespace melkov\models;
+namespace melkov\tools\models;
 
 use Yii;
-use \melkov\models\base\GeoCity as BaseGeoCity;
+use \melkov\tools\models\base\GeoCity as BaseGeoCity;
 
 /**
  * This is the model class for table "geo_city".

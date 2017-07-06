@@ -1,11 +1,11 @@
 <?php
 
-namespace melkov\models\query;
+namespace melkov\tools\models\query;
 
 /**
- * This is the ActiveQuery class for [[\melkov\models\GeoCountry]].
+ * This is the ActiveQuery class for [[\melkov\tools\models\GeoCountry]].
  *
- * @see \melkov\models\GeoCountry
+ * @see \melkov\tools\models\GeoCountry
  */
 class GeoCountryQuery extends \yii\db\ActiveQuery
 {
@@ -17,7 +17,7 @@ class GeoCountryQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\models\GeoCountry[]|array
+     * @return \melkov\tools\models\GeoCountry[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class GeoCountryQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\models\GeoCountry|array|null
+     * @return \melkov\tools\models\GeoCountry|array|null
      */
     public function one($db = null)
     {

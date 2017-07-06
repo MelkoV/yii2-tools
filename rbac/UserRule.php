@@ -1,8 +1,8 @@
 <?php
 
-namespace melkov\rbac;
+namespace melkov\tools\rbac;
 
-use melkov\App;
+use melkov\tools\App;
 use Yii;
 use yii\rbac\Rule;
 

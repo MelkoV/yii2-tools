@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\controllers;
+namespace melkov\tools\controllers;
 
 use Yii;
 use yii\web\Controller;

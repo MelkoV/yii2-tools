@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\helpers;
+namespace melkov\tools\helpers;
 
 class StringHelper
 {

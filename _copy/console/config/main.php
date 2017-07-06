@@ -14,7 +14,7 @@ return [
         'migrate' => [
             'class' => 'yii\console\controllers\MigrateController',
 //        'migrationTable' => 'mg_migration',
-            'templateFile' => '@melkov/console/migration_tpl.php'
+            'templateFile' => '@melkov/tools/console/migration_tpl.php'
         ],
         'giix'    => [
             'class'          => 'schmunk42\giiant\commands\BatchController',

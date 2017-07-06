@@ -1,11 +1,11 @@
 <?php
 
-namespace melkov\models\query;
+namespace melkov\tools\models\query;
 
 /**
- * This is the ActiveQuery class for [[\melkov\models\GeoFederalDistrict]].
+ * This is the ActiveQuery class for [[\melkov\tools\models\GeoFederalDistrict]].
  *
- * @see \melkov\models\GeoFederalDistrict
+ * @see \melkov\tools\models\GeoFederalDistrict
  */
 class GeoFederalDistrictQuery extends \yii\db\ActiveQuery
 {
@@ -17,7 +17,7 @@ class GeoFederalDistrictQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\models\GeoFederalDistrict[]|array
+     * @return \melkov\tools\models\GeoFederalDistrict[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class GeoFederalDistrictQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\models\GeoFederalDistrict|array|null
+     * @return \melkov\tools\models\GeoFederalDistrict|array|null
      */
     public function one($db = null)
     {

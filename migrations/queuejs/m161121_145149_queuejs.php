@@ -1,7 +1,7 @@
 <?php
 
 // use yii\db\Schema;
-use melkov\console\Migration;
+use melkov\tools\console\Migration;
 
 class m161121_145149_queuejs extends Migration
 {

@@ -4,8 +4,8 @@
  * orig: https://habrahabr.ru/post/226931/
  */
 
-namespace melkov\widgets;
-use melkov\models\Lang;
+namespace melkov\tools\widgets;
+use melkov\tools\models\Lang;
 
 class WLang extends \yii\bootstrap\Widget
 {

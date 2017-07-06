@@ -1,9 +1,9 @@
 <?php
 
-namespace melkov\models;
+namespace melkov\tools\models;
 
 use Yii;
-use \melkov\models\base\LanguageSource as BaseLanguageSource;
+use \melkov\tools\models\base\LanguageSource as BaseLanguageSource;
 
 /**
  * This is the model class for table "language_source".

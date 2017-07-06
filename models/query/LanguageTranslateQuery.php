@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\models\query;
+namespace melkov\tools\models\query;
 
 /**
  * This is the ActiveQuery class for [[\common\models\LanguageTranslate]].
@@ -17,7 +17,7 @@ class LanguageTranslateQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\models\LanguageTranslate[]|array
+     * @return \melkov\tools\models\LanguageTranslate[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class LanguageTranslateQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\models\LanguageTranslate|array|null
+     * @return \melkov\tools\models\LanguageTranslate|array|null
      */
     public function one($db = null)
     {

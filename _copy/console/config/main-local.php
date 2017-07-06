@@ -9,12 +9,12 @@ return [
                 // generator name
                 'giiant-model' => [
                     //generator class
-                    'class'     => 'melkov\gii\ModelGenerator',
+                    'class'     => 'melkov\tools\gii\ModelGenerator',
                     //setting for out templates
                     'templates' => [
                         // template name => path to template
                         'melkov' =>
-                            '@melkov/gii/template',
+                            '@melkov/tools/gii/template',
                     ]
                 ]
             ],

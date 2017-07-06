@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\models;
+namespace melkov\tools\models;
 
 use Yii;
 use \common\models\base\Worker as BaseWorker;

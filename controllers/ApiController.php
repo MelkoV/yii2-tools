@@ -1,8 +1,8 @@
 <?php
 
-namespace melkov\controllers;
+namespace melkov\tools\controllers;
 
-use melkov\exceptions\ApiException;
+use melkov\tools\exceptions\ApiException;
 use Yii;
 use yii\base\Exception;
 use yii\base\InvalidRouteException;

@@ -1,11 +1,11 @@
 <?php
 
-namespace melkov\models\search;
+namespace melkov\tools\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use melkov\models\LanguageSource as LanguageSourceModel;
+use melkov\tools\models\LanguageSource as LanguageSourceModel;
 
 /**
  * LanguageSource represents the model behind the search form about `common\models\LanguageSource`.

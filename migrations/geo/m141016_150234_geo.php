@@ -1,11 +1,11 @@
 <?php
 
-use melkov\console\Migration;
+use melkov\tools\console\Migration;
 
 class m141016_150234_geo extends Migration
 {
 
-    // yii migrate --migrationPath=@melkov/migrations/geo
+    // yii migrate --migrationPath=@melkov/tools/migrations/geo
 
     public function getNewTables()
     {
@@ -47,15 +47,15 @@ class m141016_150234_geo extends Migration
 
     public function safeUp()
     {
-        $path = Yii::getAlias("@melkov/migrations/geo");
+        $path = Yii::getAlias("@melkov/tools/migrations/geo");
         $this->createTables($this->getNewTables());
         $fp = fopen($path . DIRECTORY_SEPARATOR . "cities.txt", "r");
 
-        $model = new \melkov\models\GeoCountry();
+        $model = new \melkov\tools\models\GeoCountry();
         $model->name = "Россия";
         $model->save();
         $ru = $model->id;
-        $model = new \melkov\models\GeoCountry();
+        $model = new \melkov\tools\models\GeoCountry();
         $model->name = "Украина";
         $model->save();
         $ua = $model->id;
@@ -67,17 +67,17 @@ class m141016_150234_geo extends Migration
 
         while (($line = fgets($fp, 4096)) !== false) {
             $data = explode("\t", $line);
-            $city = new \melkov\models\GeoCity();
+            $city = new \melkov\tools\models\GeoCity();
             $city->geo_id = $data[0];
             if (!isset($districts[$data[3]])) {
-                $d = new \melkov\models\GeoFederalDistrict();
+                $d = new \melkov\tools\models\GeoFederalDistrict();
                 $d->name = $data[3];
                 $d->country_id = $city->geo_id > $uaEnd ? $ru : $ua;
                 $d->save();
                 $districts[$data[3]] = $d->id;
             }
             if (!isset($regions[$data[2]])) {
-                $d = new \melkov\models\GeoRegion();
+                $d = new \melkov\tools\models\GeoRegion();
                 $d->name = $data[2];
                 $d->federal_district_id = $districts[$data[3]];
                 $d->save();
@@ -105,7 +105,7 @@ class m141016_150234_geo extends Migration
                 echo $data[4] . "|" . PHP_EOL;
                 continue;
             }
-            $model = new \melkov\models\GeoIp();
+            $model = new \melkov\tools\models\GeoIp();
             $model->city_id = $cities[$data[4]];
             $model->start = trim($ips[0]);
             $model->end = trim($ips[1]);

@@ -11,7 +11,7 @@ use yii\helpers\StringHelper;
 
 class ModelGenerator extends Generator
 {
-    public $baseClass = 'melkov\db\ActiveRecord';
+    public $baseClass = 'melkov\tools\db\ActiveRecord';
 
     public function generateRules($table)
     {

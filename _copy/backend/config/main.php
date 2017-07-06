@@ -40,7 +40,7 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-//            'class' => 'melkov\LangUrlManager',
+//            'class' => 'melkov\tools\LangUrlManager',
 //            "enableStrictParsing" => true,
             'rules' => [
 //                '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',

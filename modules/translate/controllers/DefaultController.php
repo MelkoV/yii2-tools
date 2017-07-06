@@ -1,12 +1,12 @@
 <?php
 
-namespace melkov\modules\translate\controllers;
+namespace melkov\tools\modules\translate\controllers;
 
-use melkov\CurrentUser;
-use melkov\models\LanguageSource;
-use melkov\models\LanguageTranslate;
+use melkov\tools\CurrentUser;
+use melkov\tools\models\LanguageSource;
+use melkov\tools\models\LanguageTranslate;
 use yii\web\Controller;
-use melkov\models\search\LanguageSource as LanguageSourceSearch;
+use melkov\tools\models\search\LanguageSource as LanguageSourceSearch;
 use yii\web\HttpException;
 
 class DefaultController extends Controller

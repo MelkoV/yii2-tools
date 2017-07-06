@@ -2,10 +2,10 @@
 
 /**
  * @var yii\web\View $this
- * @var melkov\models\LanguageSource $model
+ * @var melkov\tools\models\LanguageSource $model
  */
 
-use melkov\models\LanguageSource;
+use melkov\tools\models\LanguageSource;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php echo $form->errorSummary($model); ?>
 
-        <?php foreach (\melkov\models\Lang::find()->all() as $lang) : ?>
+        <?php foreach (\melkov\tools\models\Lang::find()->all() as $lang) : ?>
             <div class="form-group field-languagesource-translation">
                 <label class="control-label col-sm-3"><?= Yii::t("translate", "Message") . " " . $lang->name ?></label>
                 <div class="col-sm-6">

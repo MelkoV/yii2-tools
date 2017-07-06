@@ -15,7 +15,7 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-//            'class' => 'melkov\LangUrlManager',
+//            'class' => 'melkov\tools\LangUrlManager',
             'rules' => [
 //                '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
                 '/' => 'site/index',
@@ -27,9 +27,7 @@ return [
                 'contacts' => 'site/contact',
                 
                 'image/<_size:[\w\_]+>/<_p0:[\w]+>/<_p1:[\w]+>/<_p2:[\w]+>/<_path:[\w]+>.<_ext:[\w]+>' => 'image/index',
-               
-                'sitemap.xml' => 'export/sitemap',
-                'shop.xml' => 'export/yml',
+
 //                '<_c:[\w\-]+>/<_a:[\w\-]+>' => '<_c>/<_a>',
             ],
         ],

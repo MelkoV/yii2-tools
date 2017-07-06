@@ -4,10 +4,10 @@
  * orig: https://habrahabr.ru/post/226931/
  */
 
-namespace melkov;
+namespace melkov\tools;
 
 use yii\web\UrlManager;
-use melkov\models\Lang;
+use melkov\tools\models\Lang;
 
 class LangUrlManager extends UrlManager
 {

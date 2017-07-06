@@ -1,11 +1,11 @@
 <?php
 
-namespace melkov\models\query;
+namespace melkov\tools\models\query;
 
 /**
- * This is the ActiveQuery class for [[\melkov\models\GeoRegion]].
+ * This is the ActiveQuery class for [[\melkov\tools\models\GeoRegion]].
  *
- * @see \melkov\models\GeoRegion
+ * @see \melkov\tools\models\GeoRegion
  */
 class GeoRegionQuery extends \yii\db\ActiveQuery
 {
@@ -17,7 +17,7 @@ class GeoRegionQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\models\GeoRegion[]|array
+     * @return \melkov\tools\models\GeoRegion[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class GeoRegionQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \melkov\models\GeoRegion|array|null
+     * @return \melkov\tools\models\GeoRegion|array|null
      */
     public function one($db = null)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\filters;
+namespace melkov\tools\filters;
 
 use yii\base\ActionFilter;
 use yii\di\Instance;

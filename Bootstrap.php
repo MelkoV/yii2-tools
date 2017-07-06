@@ -1,5 +1,5 @@
 <?php
-namespace melkov;
+namespace melkov\tools;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 /**
@@ -16,10 +16,9 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        /**
-         * @var Module $gii
-         */
-        \Yii::setAlias('@melkov', '@vendor/melkov/yii2-tools');
+
+        \Yii::setAlias('@melkov', '@vendor/melkov');
+        \Yii::setAlias('@melkov/tools', '@vendor/melkov/yii2-tools');
 
     }
 }

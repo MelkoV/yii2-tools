@@ -1,5 +1,5 @@
 <?php
-namespace melkov\models;
+namespace melkov\tools\models;
 
 use Yii;
 use yii\base\NotSupportedException;

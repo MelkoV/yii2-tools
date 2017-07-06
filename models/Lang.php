@@ -4,7 +4,7 @@
  * orig: https://habrahabr.ru/post/226931/
  */
 
-namespace melkov\models;
+namespace melkov\tools\models;
 
 use Yii;
 use \common\models\base\Lang as BaseLang;

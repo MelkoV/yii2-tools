@@ -3,8 +3,8 @@
   "description": "Some components and helpers for yii2 framework",
   "authors": [
     {
-      "name": "AntonSmorodin",
-      "email": "anton@smorodin.me"
+      "name": "Anton MelkoV",
+      "email": "anton@melkov.xyz"
     }
   ],
   "type": "yii2-extension",
@@ -23,10 +23,10 @@
   },
   "autoload": {
     "psr-4": {
-      "melkov\\": ""
+      "melkov\\tools\\": ""
     }
   },
   "extra": {
-    "bootstrap": "melkov\\Bootstrap"
+    "bootstrap": "melkov\\tools\\Bootstrap"
   }
 }

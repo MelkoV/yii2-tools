@@ -1,8 +1,8 @@
 <?php
 
-namespace melkov\controllers;
+namespace melkov\tools\controllers;
 
-use melkov\filters\RbacControlFilter;
+use melkov\tools\filters\RbacControlFilter;
 
 class RbacController extends WebController
 {

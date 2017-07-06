@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov;
+namespace melkov\tools;
 
 class App
 {
@@ -9,20 +9,28 @@ class App
     const ROLE_MANAGER = "manager";
     const ROLE_OPERATOR = "operator";
     const ROLE_ADMIN = "admin";
-    
-    
 
+
+    /**
+     * boolean filter for CRUD
+     *
+     * @return array
+     */
     public static function booleanFilter()
     {
         return [true => \Yii::t("app", "Yes"), false => \Yii::t("app", "No")];
     }
 
-    public static function getUrl($url)
+    public static function getUrl($url, $protocol = "http", $strict = false)
     {
         $url = trim($url);
-        if (strpos($url, "http://") === 0 || strpos($url, "https://") === 0) {
+        $data = explode("://", $url);
+        if (isset($data[1])) {
+            if ($strict && $data[0] != $protocol) {
+                return $protocol . "://" . $data[1];
+            }
             return $url;
         }
-        return "http://" . $url;
+        return $protocol . "://" . $url;
     }
 }
