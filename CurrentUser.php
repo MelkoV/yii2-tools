@@ -22,6 +22,11 @@ class CurrentUser
         return \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
     }
 
+    public static function getName()
+    {
+        return \Yii::$app->user->isGuest ? null : \Yii::$app->user->identity->name;
+    }
+
     /**
      * Alias for \Yii::$app->user->can()
      *

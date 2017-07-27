@@ -156,4 +156,10 @@ class User extends BaseUser implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public function assign($role)
+    {
+        $obj = \Yii::$app->authManager->getRole($role);
+        \Yii::$app->authManager->assign($obj, $this->id);
+    }
 }

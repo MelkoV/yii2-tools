@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\gii;
+namespace melkov\tools\gii;
 
 use schmunk42\giiant\generators\model\Generator;
 use schmunk42\giiant\helpers\SaveForm;
