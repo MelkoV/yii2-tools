@@ -1,13 +1,13 @@
 <?php
 
-namespace melkov\tools\filters;
+namespace melkov\tools\rbac;
 
 use yii\base\ActionFilter;
 use yii\di\Instance;
 use yii\web\ForbiddenHttpException;
 use yii\web\User;
 
-class RbacControlFilter extends ActionFilter
+class ControlFilter extends ActionFilter
 {
     /**
      * @var User|array|string the user object representing the authentication status or the ID of the user application component.

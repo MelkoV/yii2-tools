@@ -48,16 +48,16 @@ class ActiveRecord extends \yii\db\ActiveRecord
         }
     }
 
-    public function attributeDescriptions()
+    public function attributeHints()
     {
         return [];
     }
 
-    public function getAttributeDescription($name)
+    public function getAttributeHint($name)
     {
-        $descriptions = $this->attributeDescriptions();
-        if (isset($descriptions[$name])) {
-            return $descriptions[$name];
+        $hints = $this->attributeHints();
+        if (isset($hints[$name])) {
+            return $hints[$name];
         }
         return null;
     }

@@ -28,7 +28,9 @@ class m161121_145149_queuejs extends Migration
             "id" => $this->primaryKey(),
             "name" => $this->string(),
             "slug" => $this->string()->notNull(),
-            "auto_load" => $this->boolean()->notNull()->defaultValue(true)
+            "auto_load" => $this->boolean()->notNull()->defaultValue(true),
+            "active" => $this->boolean()->notNull()->defaultValue(true),
+            "data" => $this->text()
         ]);
         $this->createIndex("worker_slug_idx", "worker", "slug", true);
 

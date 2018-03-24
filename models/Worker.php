@@ -14,7 +14,7 @@ class Worker extends BaseWorker
     public function restart()
     {
 //        Yii::$app->queueJs->deleteWorker($this->slug);
-        Yii::$app->queueJs->addWorker($this->slug, "php " . dirname(Yii::getAlias("@app")) . "/yii queuejs/{name} {params}");
+        Yii::$app->queueJs->addWorker($this->slug, \melkov\tools\App::getPhpBin() . " " . dirname(Yii::getAlias("@app")) . "/yii queuejs/{name} {params}");
     }
 
 }

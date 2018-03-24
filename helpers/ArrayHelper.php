@@ -28,23 +28,4 @@ class ArrayHelper extends \yii\helpers\ArrayHelper
 
     }
 
-    /**
-     * @param $array
-     * @param $value
-     * @param string $delimiter
-     * @param null $defaultValue
-     * @return mixed|null
-     */
-    public static function getDelimiterValue($array, $value, $delimiter = ".", $defaultValue = null)
-    {
-        $vals = explode($delimiter, $value);
-        foreach ($vals as $val) {
-            if (is_array($array) && isset($array[$val])) {
-                $array = $array[$val];
-            } else {
-                return $defaultValue;
-            }
-        }
-        return $array;
-    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace melkov\tools\helpers;
+namespace melkov\tools\console;
 
 class ConsoleProgressBar
 {

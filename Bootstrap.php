@@ -5,7 +5,7 @@ use yii\base\BootstrapInterface;
 /**
  * Class Bootstrap
  *
- * @package carono\components
+ * @package melkov\tools
  */
 class Bootstrap implements BootstrapInterface
 {

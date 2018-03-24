@@ -2,6 +2,15 @@
 
 namespace melkov\tools\console;
 
+/**
+ * Class Migration
+ * @package melkov\tools\console
+ *
+ * todo rbac - to RbacManager
+ * todo FK column
+ * todo slug column
+ * todo createColumns
+ */
 class Migration extends \yii\db\Migration
 {
     const TYPE_FOREIGN_KEY = "foreign_key";
@@ -200,6 +209,18 @@ class Migration extends \yii\db\Migration
         for ($i = 0; $i < $count; $i++) {
             $this->dropTable(array_pop($tables));
         }
+    }
+
+    /** todo */
+    public function updateRbac()
+    {
+
+    }
+
+    /** todo */
+    public function clearRbac()
+    {
+
     }
 
     /**

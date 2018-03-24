@@ -40,7 +40,7 @@ class <?= $className ?> extends Base<?= $className . "\n" ?>
         ]);
     }
 
-    public function attributeDescriptions()
+    public function attributeHints()
     {
         return [
 

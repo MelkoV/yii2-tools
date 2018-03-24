@@ -6,17 +6,17 @@ class StringHelper
 {
     /**
      * @param $count
-     * @param $end [0;5-9;11-20, 1, 2-4]
+     * @param $end [0,5-9,11-20; 1; 2-4]
      * @return string
      */
-    public static function dec($count, $end)
+    public static function end($count, $end)
     {
         $str = strval($count);
         $len = strlen($str);
-        if (in_array($str{$len-1}, ["0", "5", "6", "7", "8", "9"]) || ($len > 1 && $str{$len-2} == "1")) {
+        if (in_array($str{$len - 1}, ["0", "5", "6", "7", "8", "9"]) || ($len > 1 && $str{$len - 2} == "1")) {
             return $end[0];
         }
-        if ($str{$len-1} == "1") {
+        if ($str{$len - 1} == "1") {
             return $end[1];
         }
         return $end[2];
@@ -156,7 +156,7 @@ class StringHelper
     public static function ucfirst($str)
     {
         $enc = 'utf-8';
-        return mb_strtoupper(mb_substr($str, 0, 1, $enc), $enc).mb_substr($str, 1, mb_strlen($str, $enc), $enc);
+        return mb_strtoupper(mb_substr($str, 0, 1, $enc), $enc) . mb_substr($str, 1, mb_strlen($str, $enc), $enc);
     }
 
     public static function getAsInteger($string)
@@ -164,12 +164,13 @@ class StringHelper
         return (int)str_replace(' ', '', $string);
     }
 
-    public static function getAsBoolean($string){
-        if (StringHelper::lower($string) === 'false'){
+    public static function getAsBoolean($string)
+    {
+        if (StringHelper::lower($string) === 'false') {
             return false;
-        }elseif(StringHelper::lower($string) === 'true'){
+        } elseif (StringHelper::lower($string) === 'true') {
             return true;
-        }else{
+        } else {
             return (bool)$string;
         }
     }
@@ -193,25 +194,25 @@ class StringHelper
      *  $rules = ["%1","%2-%4",["%5-%9","%0",'11-20']];
      *  $endings = ["заяв","ку","ки","ок"];
      */
-    public static function getNumEnding($number, $endings = ["заяв","ку","ки","ок"], $rules = ["%1","%2-%4",["%5-%9","%0",'11-20']])
+    public static function getNumEnding($number, $endings = ["заяв", "ку", "ки", "ок"], $rules = ["%1", "%2-%4", ["%5-%9", "%0", '11-20']])
     {
         $lastResult = 0;
         $result = '';
         $root = array_shift($endings);
         $x = 0;
-        foreach ($rules as $rule){
+        foreach ($rules as $rule) {
             $arr = !is_array($rule) ? [$rule] : $rule;
-            foreach ($arr as $subRule){
-                if ($lastResult < self::_applyRule($number, $subRule)){
-                    $result = $root.$endings[$x];
+            foreach ($arr as $subRule) {
+                if ($lastResult < self::_applyRule($number, $subRule)) {
+                    $result = $root . $endings[$x];
                 }
             }
             $x++;
         }
-        if ($result){
+        if ($result) {
             return $result;
-        }else{
-            return $root.$endings[0];
+        } else {
+            return $root . $endings[0];
         }
     }
 
@@ -219,25 +220,25 @@ class StringHelper
     {
         $modPriority['comp'] = 1;
         $modPriority['%'] = 2;
-        $arr = explode('-',$rule);
+        $arr = explode('-', $rule);
         $mod = '';
-        foreach ($arr as &$element){
+        foreach ($arr as &$element) {
             $temp = self::_extractModifier($element);
-            if (!$mod){
+            if (!$mod) {
                 $mod = $temp;
             }
         }
         $range = self::_fillRange($arr);
 
-        switch ($mod){
+        switch ($mod) {
             case '%':
-                $end = $number%10;
-                if (in_array($end,$range)){
+                $end = $number % 10;
+                if (in_array($end, $range)) {
                     return $modPriority[$mod];
                 }
                 break;
             case 'comp':
-                if (in_array($number,$range)){
+                if (in_array($number, $range)) {
                     return $modPriority[$mod];
                 }
                 break;
@@ -247,16 +248,16 @@ class StringHelper
 
     private static function _fillRange($arr)
     {
-        if (!is_array($arr)){
+        if (!is_array($arr)) {
             return [$arr];
         }
-        if (count($arr) != 2){
+        if (count($arr) != 2) {
             return $arr;
         }
         $start = $arr[0];
         $end = $arr[1];
         $result = [];
-        for ($i=(int)$start;$i<=(int)$end;$i++){
+        for ($i = (int)$start; $i <= (int)$end; $i++) {
             $result[] = $i;
         }
         return $result;
@@ -264,14 +265,14 @@ class StringHelper
 
     private static function _extractModifier(&$str)
     {
-        if (strlen($str)){
-            if (!is_numeric($mod = $str[0])){
-                $str = substr($str,1);
+        if (strlen($str)) {
+            if (!is_numeric($mod = $str[0])) {
+                $str = substr($str, 1);
                 return $mod;
-            }else{
+            } else {
                 return 'comp';
             }
-        }else{
+        } else {
             return 'comp';
         }
     }
@@ -304,6 +305,19 @@ class StringHelper
         } else {
             return false;
         }
+    }
+
+    public static function getUrl($url, $protocol = "http", $strict = false)
+    {
+        $url = trim($url);
+        $data = explode("://", $url);
+        if (isset($data[1])) {
+            if ($strict && $data[0] != $protocol) {
+                return $protocol . "://" . $data[1];
+            }
+            return $url;
+        }
+        return $protocol . "://" . $url;
     }
 
 }

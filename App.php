@@ -21,16 +21,15 @@ class App
         return [true => \Yii::t("app", "Yes"), false => \Yii::t("app", "No")];
     }
 
-    public static function getUrl($url, $protocol = "http", $strict = false)
+
+    public static function getParam($key, $default = null)
     {
-        $url = trim($url);
-        $data = explode("://", $url);
-        if (isset($data[1])) {
-            if ($strict && $data[0] != $protocol) {
-                return $protocol . "://" . $data[1];
-            }
-            return $url;
-        }
-        return $protocol . "://" . $url;
+        return \yii\helpers\ArrayHelper::getValue(\Yii::$app->params, $key, $default);
     }
+
+    public static function getPhpBin()
+    {
+        return self::getParam("phpBin", "php");
+    }
+
 }
