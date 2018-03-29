@@ -18,7 +18,7 @@ class App
      */
     public static function booleanFilter()
     {
-        return [true => \Yii::t("app", "Yes"), false => \Yii::t("app", "No")];
+        return [true => \Yii::t("label", "Yes"), false => \Yii::t("label", "No")];
     }
 
 

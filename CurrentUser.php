@@ -17,14 +17,32 @@ class CurrentUser
      *
      * @return int|null|string
      */
-    public static function getId()
+    public static function id()
     {
         return \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
     }
 
-    public static function getName()
+    /**
+     * Alias for \Yii::$app->user->identity->name
+     *
+     * @return null|string
+     */
+    public static function name()
     {
         return \Yii::$app->user->isGuest ? null : \Yii::$app->user->identity->name;
+    }
+
+    /**
+     * Alias for \Yii::$app->user->identity
+     *
+     * @param $forceReload
+     * @return null|\common\models\User
+     */
+    public static function model($forceReload = false)
+    {
+        return ($forceReload && !\Yii::$app->user->isGuest)
+            ? \common\models\User::findOne(self::id())
+            : \Yii::$app->user->identity;
     }
 
     /**
