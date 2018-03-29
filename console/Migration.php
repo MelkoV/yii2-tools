@@ -17,8 +17,6 @@ class Migration extends \yii\db\Migration
 
     public $tableOptions = null;
 
-    protected $foreignKeys = [];
-
     public function getOperations()
     {
 //        return ["Controller:Action" => ["role1", "role2"]];
@@ -48,7 +46,7 @@ class Migration extends \yii\db\Migration
         }
         foreach ($this->depends() as $depend) {
             echo "\nApply ".$depend."\n";
-            exec("php yii migrate --interactive=0 --migrationPath=" . $depend, $out);
+            exec(App::getPhpBin() . " yii migrate --interactive=0 --migrationPath=" . $depend, $out);
             foreach ($out as $line) {
                 echo $line . "\n";
             }
@@ -164,6 +162,7 @@ class Migration extends \yii\db\Migration
 
     public function createTables($tables = [])
     {
+        $foreignKeys = [];
         foreach ($tables as $tableName => $columns) {
             foreach ($columns as $name => &$column) {
                 if (is_array($column) && isset($column["type"])) {
@@ -173,7 +172,7 @@ class Migration extends \yii\db\Migration
                         $tableNameImp = strtr(\Yii::$app->db->schema->getRawTableName($tableName), ["`" => "", "'" => "", '"' => '']);
                         array_unshift($fkName, $tableNameImp);
                         $fkName[] = "fk";
-                        $this->foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
+                        $foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
                         $notNull = $column["not_null"];
                         $column = $this->integer();
                         if ($notNull) {
@@ -186,7 +185,7 @@ class Migration extends \yii\db\Migration
             $this->createTable($tableName, $columns, $this->tableOptions);
         }
 
-        foreach ($this->foreignKeys as $fk) {
+        foreach ($foreignKeys as $fk) {
             $this->addForeignKey($fk[0], $fk[1], $fk[2], $fk[3], $fk[4]);
         }
 
@@ -251,5 +250,21 @@ class Migration extends \yii\db\Migration
         }
         \Yii::$app->authManager->add($object);
         return $object;
+    }
+
+    private function makeForeignKey()
+    {
+        $fkName = explode("_", $name);
+        array_pop($fkName);
+        $tableNameImp = strtr(\Yii::$app->db->schema->getRawTableName($tableName), ["`" => "", "'" => "", '"' => '']);
+        array_unshift($fkName, $tableNameImp);
+        $fkName[] = "fk";
+        $foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
+        $notNull = $column["not_null"];
+        $column = $this->integer();
+        if ($notNull) {
+            $column->notNull();
+        }
+        return $column;
     }
 }
