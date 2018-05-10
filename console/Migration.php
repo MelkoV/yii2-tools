@@ -1,6 +1,7 @@
 <?php
 
 namespace melkov\tools\console;
+use melkov\tools\App;
 
 /**
  * Class Migration
@@ -36,6 +37,7 @@ class Migration extends \yii\db\Migration
 
     public function depends()
     {
+
         return [];
     }
 
@@ -156,9 +158,9 @@ class Migration extends \yii\db\Migration
         \Yii::$app->authManager->assign($obj, $userId);
     }
 
-    public function foreignKey($table, $column, $notNull = false, $length = null)
+    public function foreignKey($table, $column, $notNull = false, $length = null, $unsigned = false)
     {
-        return ["type" => self::TYPE_FOREIGN_KEY, "fk_table" => $table, "fk_column" => $column, "length" => $length, "not_null" => $notNull];
+        return ["type" => self::TYPE_FOREIGN_KEY, "fk_table" => $table, "fk_column" => $column, "length" => $length, "not_null" => $notNull, $unsigned = $unsigned];
     }
 
     public function createTables($tables = [])
@@ -267,9 +269,13 @@ class Migration extends \yii\db\Migration
                 $fkName[] = "fk";
                 $this->foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
                 $notNull = $column["not_null"];
-                $column = $this->integer();
+                $unsigned = $column["unsigned"];
+                $column = $this->integer($column["length"]);
                 if ($notNull) {
                     $column->notNull();
+                }
+                if ($unsigned) {
+                    $column->unsigned();
                 }
             }
         }
