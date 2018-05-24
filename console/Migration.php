@@ -100,9 +100,13 @@ class Migration extends \yii\db\Migration
         foreach ($operations as $operation => $roles) {
             $operObject = \Yii::$app->authManager->getPermission($operation);
             if (!$operObject) {
-                $operObject = $this->createOperation($operation);
+                $operObject = $this->createOperation($operation, isset($roles["description"]) ? $roles["description"] : "");
             }
             foreach ($roles as $role) {
+                if (is_array($role)) {
+                    continue;
+                }
+
                 $object = \Yii::$app->authManager->getRole($role);
                 if (!$object) {
                     $object = $this->createRole($role);
@@ -127,6 +131,9 @@ class Migration extends \yii\db\Migration
                 continue;
             }
             foreach ($roles as $role) {
+                if (is_array($role)) {
+                    continue;
+                }
                 $object = \Yii::$app->authManager->getRole($role);
                 if (!$object) {
                     continue;
@@ -225,11 +232,13 @@ class Migration extends \yii\db\Migration
 
     /**
      * @param $name
+     * @param $description
      * @return \yii\rbac\Permission
      */
-    protected function createOperation($name)
+    protected function createOperation($name, $description = "")
     {
         $object = \Yii::$app->authManager->createPermission($name);
+        $object->description = $description;
         \Yii::$app->authManager->add($object);
         return $object;
     }
@@ -237,11 +246,13 @@ class Migration extends \yii\db\Migration
     /**
      * @param $name
      * @param \yii\rbac\Rule $rule
+     * @param $description
      * @return \yii\rbac\Role
      */
-    protected function createRole($name, $rule = null)
+    protected function createRole($name, $rule = null, $description = "")
     {
         $object = \Yii::$app->authManager->createRole($name);
+        $object->description = $description;
         if ($rule) {
             $ruleObject = \Yii::$app->authManager->getRule($rule->name);
             if (!$ruleObject) {
@@ -269,7 +280,7 @@ class Migration extends \yii\db\Migration
                 $fkName[] = "fk";
                 $this->foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
                 $notNull = $column["not_null"];
-                $unsigned = $column["unsigned"];
+                $unsigned = isset($column["unsigned"]) ? $column["unsigned"] : false;
                 $column = $this->integer($column["length"]);
                 if ($notNull) {
                     $column->notNull();
