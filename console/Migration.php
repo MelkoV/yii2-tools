@@ -1,6 +1,7 @@
 <?php
 
 namespace melkov\tools\console;
+use melkov\tools\App;
 
 /**
  * Class Migration
@@ -9,13 +10,14 @@ namespace melkov\tools\console;
  * todo rbac - to RbacManager
  * todo FK column
  * todo slug column
- * todo createColumns
  */
 class Migration extends \yii\db\Migration
 {
     const TYPE_FOREIGN_KEY = "foreign_key";
 
     public $tableOptions = null;
+
+    private $foreignKeys = [];
 
     public function getOperations()
     {
@@ -35,6 +37,7 @@ class Migration extends \yii\db\Migration
 
     public function depends()
     {
+
         return [];
     }
 
@@ -97,9 +100,13 @@ class Migration extends \yii\db\Migration
         foreach ($operations as $operation => $roles) {
             $operObject = \Yii::$app->authManager->getPermission($operation);
             if (!$operObject) {
-                $operObject = $this->createOperation($operation);
+                $operObject = $this->createOperation($operation, isset($roles["description"]) ? $roles["description"] : "");
             }
             foreach ($roles as $role) {
+                if (is_array($role)) {
+                    continue;
+                }
+
                 $object = \Yii::$app->authManager->getRole($role);
                 if (!$object) {
                     $object = $this->createRole($role);
@@ -124,6 +131,9 @@ class Migration extends \yii\db\Migration
                 continue;
             }
             foreach ($roles as $role) {
+                if (is_array($role)) {
+                    continue;
+                }
                 $object = \Yii::$app->authManager->getRole($role);
                 if (!$object) {
                     continue;
@@ -155,50 +165,48 @@ class Migration extends \yii\db\Migration
         \Yii::$app->authManager->assign($obj, $userId);
     }
 
-    public function foreignKey($table, $column, $notNull = false, $length = null)
+    public function foreignKey($table, $column, $notNull = false, $length = null, $unsigned = false)
     {
-        return ["type" => self::TYPE_FOREIGN_KEY, "fk_table" => $table, "fk_column" => $column, "length" => $length, "not_null" => $notNull];
+        return ["type" => self::TYPE_FOREIGN_KEY, "fk_table" => $table, "fk_column" => $column, "length" => $length, "not_null" => $notNull, $unsigned = $unsigned];
     }
 
     public function createTables($tables = [])
     {
-        $foreignKeys = [];
         foreach ($tables as $tableName => $columns) {
             foreach ($columns as $name => &$column) {
-                if (is_array($column) && isset($column["type"])) {
-                    if ($column["type"] == self::TYPE_FOREIGN_KEY) {
-                        $fkName = explode("_", $name);
-                        array_pop($fkName);
-                        $tableNameImp = strtr(\Yii::$app->db->schema->getRawTableName($tableName), ["`" => "", "'" => "", '"' => '']);
-                        array_unshift($fkName, $tableNameImp);
-                        $fkName[] = "fk";
-                        $foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
-                        $notNull = $column["not_null"];
-                        $column = $this->integer();
-                        if ($notNull) {
-                            $column->notNull();
-                        }
+                $this->makeColumn($tableName, $name, $column);
 
-                    }
-                }
             }
             $this->createTable($tableName, $columns, $this->tableOptions);
         }
 
-        foreach ($foreignKeys as $fk) {
-            $this->addForeignKey($fk[0], $fk[1], $fk[2], $fk[3], $fk[4]);
-        }
+        $this->makeForeignKeys();
 
     }
-	
+
+    /**
+     * @param array $columns
+     *
+     * [
+     *      [table, column, type],
+     *      [table, column, type],
+     * ]
+     */
 	public function addColumns($columns = [])
 	{
-		
+        foreach ($columns as $c) {
+            $type = $c[2];
+            $this->makeColumn($c[0], $c[1], $type);
+            $this->addColumn($c[0], $c[1], $type);
+        }
+        $this->makeForeignKeys();
 	}
 	
 	public function dropColumns($columns = [])
 	{
-		
+        foreach ($columns as $c) {
+            $this->dropColumn($c[0], $c[1]);
+        }
 	}
 
     public function dropTables($tables = [])
@@ -224,11 +232,13 @@ class Migration extends \yii\db\Migration
 
     /**
      * @param $name
+     * @param $description
      * @return \yii\rbac\Permission
      */
-    protected function createOperation($name)
+    protected function createOperation($name, $description = "")
     {
         $object = \Yii::$app->authManager->createPermission($name);
+        $object->description = $description;
         \Yii::$app->authManager->add($object);
         return $object;
     }
@@ -236,11 +246,13 @@ class Migration extends \yii\db\Migration
     /**
      * @param $name
      * @param \yii\rbac\Rule $rule
+     * @param $description
      * @return \yii\rbac\Role
      */
-    protected function createRole($name, $rule = null)
+    protected function createRole($name, $rule = null, $description = "")
     {
         $object = \Yii::$app->authManager->createRole($name);
+        $object->description = $description;
         if ($rule) {
             $ruleObject = \Yii::$app->authManager->getRule($rule->name);
             if (!$ruleObject) {
@@ -252,19 +264,39 @@ class Migration extends \yii\db\Migration
         return $object;
     }
 
-    private function makeForeignKey()
+    /**
+     * @param $tableName
+     * @param $name
+     * @param string|array $column column type
+     */
+    private function makeColumn($tableName, $name, &$column)
     {
-        $fkName = explode("_", $name);
-        array_pop($fkName);
-        $tableNameImp = strtr(\Yii::$app->db->schema->getRawTableName($tableName), ["`" => "", "'" => "", '"' => '']);
-        array_unshift($fkName, $tableNameImp);
-        $fkName[] = "fk";
-        $foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
-        $notNull = $column["not_null"];
-        $column = $this->integer();
-        if ($notNull) {
-            $column->notNull();
+        if (is_array($column) && isset($column["type"])) {
+            if ($column["type"] == self::TYPE_FOREIGN_KEY) {
+                $fkName = explode("_", $name);
+                array_pop($fkName);
+                $tableNameImp = strtr(\Yii::$app->db->schema->getRawTableName($tableName), ["`" => "", "'" => "", '"' => '']);
+                array_unshift($fkName, $tableNameImp);
+                $fkName[] = "fk";
+                $this->foreignKeys[] = [implode("_", $fkName), $tableName, $name, $column["fk_table"], $column["fk_column"]];
+                $notNull = $column["not_null"];
+                $unsigned = isset($column["unsigned"]) ? $column["unsigned"] : false;
+                $column = $this->integer($column["length"]);
+                if ($notNull) {
+                    $column->notNull();
+                }
+                if ($unsigned) {
+                    $column->unsigned();
+                }
+            }
         }
-        return $column;
+    }
+
+    private function makeForeignKeys()
+    {
+        foreach ($this->foreignKeys as $fk) {
+            $this->addForeignKey($fk[0], $fk[1], $fk[2], $fk[3], $fk[4]);
+        }
+        $this->foreignKeys = [];
     }
 }
