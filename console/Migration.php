@@ -111,7 +111,9 @@ class Migration extends \yii\db\Migration
                 if (!$object) {
                     $object = $this->createRole($role);
                 }
-                \Yii::$app->authManager->addChild($object, $operObject);
+                if (!\Yii::$app->authManager->hasChild($object, $operObject)) {
+                    \Yii::$app->authManager->addChild($object, $operObject);
+                }
             }
         }
     }
