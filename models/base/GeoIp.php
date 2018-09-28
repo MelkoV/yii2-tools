@@ -17,7 +17,7 @@ use Yii;
  * @property \melkov\tools\models\GeoCity $city
  * @property string $aliasModel
  */
-abstract class GeoIp extends \melkov\db\ActiveRecord 
+abstract class GeoIp extends \melkov\tools\db\ActiveRecord
 {
 
 

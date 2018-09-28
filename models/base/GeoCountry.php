@@ -15,7 +15,7 @@ use Yii;
  * @property \melkov\tools\models\GeoFederalDistrict[] $geoFederalDistricts
  * @property string $aliasModel
  */
-abstract class GeoCountry extends \melkov\db\ActiveRecord 
+abstract class GeoCountry extends \melkov\tools\db\ActiveRecord
 {
 
 
