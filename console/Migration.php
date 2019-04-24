@@ -56,6 +56,59 @@ class Migration extends \yii\db\Migration
         }
     }
 
+    public function foreignKey($table, $column, $notNull = false, $length = null, $unsigned = false)
+    {
+        return ["type" => self::TYPE_FOREIGN_KEY, "fk_table" => $table, "fk_column" => $column, "length" => $length, "not_null" => $notNull, "unsigned" => $unsigned];
+    }
+
+    public function createTables($tables = [])
+    {
+        foreach ($tables as $tableName => $columns) {
+            foreach ($columns as $name => &$column) {
+                $this->makeColumn($tableName, $name, $column);
+
+            }
+            $this->createTable($tableName, $columns, $this->tableOptions);
+        }
+
+        $this->makeForeignKeys();
+
+    }
+
+    /**
+     * @param array $columns
+     *
+     * [
+     *      [table, column, type],
+     *      [table, column, type],
+     * ]
+     */
+    public function addColumns($columns = [])
+    {
+        foreach ($columns as $c) {
+            $type = $c[2];
+            $this->makeColumn($c[0], $c[1], $type);
+            $this->addColumn($c[0], $c[1], $type);
+        }
+        $this->makeForeignKeys();
+    }
+
+    public function dropColumns($columns = [])
+    {
+        foreach ($columns as $c) {
+            $this->dropColumn($c[0], $c[1]);
+        }
+    }
+
+    public function dropTables($tables = [])
+    {
+        $tables = array_keys($tables);
+        $count = count($tables);
+        for ($i = 0; $i < $count; $i++) {
+            $this->dropTable(array_pop($tables));
+        }
+    }
+
     /**
      * @param array $operations
      */
@@ -146,93 +199,6 @@ class Migration extends \yii\db\Migration
     }
 
     /**
-     * @param $role
-     */
-    public function deleteRole($role)
-    {
-        $object = \Yii::$app->authManager->getRole($role);
-        if (!$object) {
-            return;
-        }
-        \Yii::$app->authManager->remove($object);
-    }
-
-    /**
-     * @param $role
-     * @param $userId
-     */
-    public function assign($role, $userId)
-    {
-        $obj = \Yii::$app->authManager->getRole($role);
-        \Yii::$app->authManager->assign($obj, $userId);
-    }
-
-    public function foreignKey($table, $column, $notNull = false, $length = null, $unsigned = false)
-    {
-        return ["type" => self::TYPE_FOREIGN_KEY, "fk_table" => $table, "fk_column" => $column, "length" => $length, "not_null" => $notNull, $unsigned = $unsigned];
-    }
-
-    public function createTables($tables = [])
-    {
-        foreach ($tables as $tableName => $columns) {
-            foreach ($columns as $name => &$column) {
-                $this->makeColumn($tableName, $name, $column);
-
-            }
-            $this->createTable($tableName, $columns, $this->tableOptions);
-        }
-
-        $this->makeForeignKeys();
-
-    }
-
-    /**
-     * @param array $columns
-     *
-     * [
-     *      [table, column, type],
-     *      [table, column, type],
-     * ]
-     */
-	public function addColumns($columns = [])
-	{
-        foreach ($columns as $c) {
-            $type = $c[2];
-            $this->makeColumn($c[0], $c[1], $type);
-            $this->addColumn($c[0], $c[1], $type);
-        }
-        $this->makeForeignKeys();
-	}
-	
-	public function dropColumns($columns = [])
-	{
-        foreach ($columns as $c) {
-            $this->dropColumn($c[0], $c[1]);
-        }
-	}
-
-    public function dropTables($tables = [])
-    {
-        $tables = array_keys($tables);
-        $count = count($tables);
-        for ($i = 0; $i < $count; $i++) {
-            $this->dropTable(array_pop($tables));
-        }
-    }
-
-    /** todo */
-    public function updateRbac()
-    {
-
-    }
-
-    /** todo */
-    public function clearRbac()
-    {
-
-    }
-
-    /**
      * @param $name
      * @param $description
      * @return \yii\rbac\Permission
@@ -264,6 +230,18 @@ class Migration extends \yii\db\Migration
         }
         \Yii::$app->authManager->add($object);
         return $object;
+    }
+
+    /**
+     * @param $role
+     */
+    public function deleteRole($role)
+    {
+        $object = \Yii::$app->authManager->getRole($role);
+        if (!$object) {
+            return;
+        }
+        \Yii::$app->authManager->remove($object);
     }
 
     /**

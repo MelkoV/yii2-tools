@@ -2,7 +2,7 @@
 
 namespace melkov\tools\console;
 
-class ConsoleProgressBar
+class ProgressBar
 {
     private $_count = 0;
     private $_step = 0;
@@ -27,6 +27,9 @@ class ConsoleProgressBar
     public function draw($i)
     {
         if (($i - $this->_lastDraw) < $this->_step && !$this->_realTimeDraw && $i < $this->_count) {
+            return;
+        }
+        if ($this->_count == 0) {
             return;
         }
 
