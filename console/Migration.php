@@ -199,6 +199,16 @@ class Migration extends \yii\db\Migration
     }
 
     /**
+     * @param $role
+     * @param $userId
+     */
+    public function assign($role, $userId)
+    {
+        $obj = \Yii::$app->authManager->getRole($role);
+        \Yii::$app->authManager->assign($obj, $userId);
+    }
+
+    /**
      * @param $name
      * @param $description
      * @return \yii\rbac\Permission
