@@ -97,7 +97,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
      */
     public function getChangedAttributeAfterSave($name)
     {
-        return $this->isChanged($name) ? $this->changedAttributesAfterSave[$name] : null;
+        return $this->isChangedAfterSave($name) ? $this->changedAttributesAfterSave[$name] : null;
     }
 
     public function attributeHints()
