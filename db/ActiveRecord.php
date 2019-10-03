@@ -8,7 +8,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
      * @var array
      * Хранит измененные данные модели, доступные после save()
      */
-    private $changedAttributesAfterSave = [];
+    protected $changedAttributesAfterSave = [];
 
     /**
      * return [
