@@ -69,9 +69,9 @@ class ActiveRecord extends \yii\db\ActiveRecord
                 }
             }
             foreach ($values as $name => $value) {
-                if (isset($attributes[$name]) && isset($allow[$name])) {
+                if (isset($allow[$name])) {
                     $this->$name = $value;
-                } elseif ($safeOnly) {
+                } else if ($safeOnly) {
                     $this->onUnsafeAttribute($name, $value);
                 }
             }
