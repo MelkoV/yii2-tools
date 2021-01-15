@@ -16,7 +16,7 @@ class <?= $className ?> extends Migration
     public function getOperations()
     {
         return [];
-//        return ["Controller:Action" => ["role1", "role2"]];
+//        return ['Controller:Action' => ['role1', 'role2']];
     }
 
     public function getNewTables()
