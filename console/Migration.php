@@ -256,7 +256,7 @@ class Migration extends \yii\db\Migration
 
     protected function intNotNull($default = 0, $length = null)
     {
-        $this->integer($length)->notNull()->defaultValue($default);
+        return $this->integer($length)->notNull()->defaultValue($default);
     }
 
     protected function dateNow($default = 'NOW()')
