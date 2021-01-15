@@ -56,12 +56,12 @@ class Migration extends \yii\db\Migration
         }
     }
 
-    public function foreignKey($table, $column, $notNull = false, $length = null, $unsigned = false)
+    protected function foreignKey($table, $column, $notNull = false, $length = null, $unsigned = false)
     {
         return ["type" => self::TYPE_FOREIGN_KEY, "fk_table" => $table, "fk_column" => $column, "length" => $length, "not_null" => $notNull, "unsigned" => $unsigned];
     }
 
-    public function createTables($tables = [])
+    protected function createTables($tables = [])
     {
         foreach ($tables as $tableName => $columns) {
             foreach ($columns as $name => &$column) {
@@ -83,7 +83,7 @@ class Migration extends \yii\db\Migration
      *      [table, column, type],
      * ]
      */
-    public function addColumns($columns = [])
+    protected function addColumns($columns = [])
     {
         foreach ($columns as $c) {
             $type = $c[2];
@@ -93,14 +93,14 @@ class Migration extends \yii\db\Migration
         $this->makeForeignKeys();
     }
 
-    public function dropColumns($columns = [])
+    protected function dropColumns($columns = [])
     {
         foreach ($columns as $c) {
             $this->dropColumn($c[0], $c[1]);
         }
     }
 
-    public function dropTables($tables = [])
+    protected function dropTables($tables = [])
     {
         $tables = array_keys($tables);
         $count = count($tables);
@@ -112,7 +112,7 @@ class Migration extends \yii\db\Migration
     /**
      * @param array $operations
      */
-    public function createOperations($operations = [])
+    protected function createOperations($operations = [])
     {
         if (!$operations) {
             $operations = $this->getOperations();
@@ -126,7 +126,7 @@ class Migration extends \yii\db\Migration
     /**
      * @param array $operations
      */
-    public function deleteOperations($operations = [])
+    protected function deleteOperations($operations = [])
     {
         if (!$operations) {
             $operations = $this->getOperations();
@@ -144,7 +144,7 @@ class Migration extends \yii\db\Migration
     /**
      * @param array $operations
      */
-    public function addOperationsAccesses($operations = [])
+    protected function addOperationsAccesses($operations = [])
     {
         if (!$operations) {
             $operations = $this->getOperations();
@@ -174,7 +174,7 @@ class Migration extends \yii\db\Migration
     /**
      * @param array $operations
      */
-    public function revokeOperationsAccesses($operations = [])
+    protected function revokeOperationsAccesses($operations = [])
     {
         if (!$operations) {
             $operations = $this->getOperations();
@@ -202,7 +202,7 @@ class Migration extends \yii\db\Migration
      * @param $role
      * @param $userId
      */
-    public function assign($role, $userId)
+    protected function assign($role, $userId)
     {
         $obj = \Yii::$app->authManager->getRole($role);
         \Yii::$app->authManager->assign($obj, $userId);
@@ -245,13 +245,52 @@ class Migration extends \yii\db\Migration
     /**
      * @param $role
      */
-    public function deleteRole($role)
+    protected function deleteRole($role)
     {
         $object = \Yii::$app->authManager->getRole($role);
         if (!$object) {
             return;
         }
         \Yii::$app->authManager->remove($object);
+    }
+
+    protected function intNotNull($default = 0, $length = null)
+    {
+        $this->integer($length)->notNull()->defaultValue($default);
+    }
+
+    protected function dateNow($default = 'NOW()')
+    {
+        return $this->dateTime()->notNull()->defaultExpression($default);
+    }
+
+    protected function bTrue()
+    {
+        return $this->booleanNotNull(true);
+    }
+
+    protected function bFalse()
+    {
+        return $this->booleanNotNull(false);
+    }
+
+    protected function booleanNotNull($default = false)
+    {
+        return $this->boolean()->notNull()->defaultValue($default);
+    }
+
+    protected function slug($length = 20)
+    {
+        return $this->stringUnique($length);
+    }
+
+    protected function stringUnique($length = null, $notNull = true)
+    {
+        $column = $this->string($length)->unique();
+        if ($notNull) {
+            $column->notNull();
+        }
+        return $column;
     }
 
     /**
