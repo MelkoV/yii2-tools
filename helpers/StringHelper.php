@@ -13,10 +13,10 @@ class StringHelper
     {
         $str = strval($count);
         $len = strlen($str);
-        if (in_array($str{$len - 1}, ["0", "5", "6", "7", "8", "9"]) || ($len > 1 && $str{$len - 2} == "1")) {
+        if (in_array($str[$len - 1], ["0", "5", "6", "7", "8", "9"]) || ($len > 1 && $str[$len - 2] == "1")) {
             return $end[0];
         }
-        if ($str{$len - 1} == "1") {
+        if ($str[$len - 1] == "1") {
             return $end[1];
         }
         return $end[2];
