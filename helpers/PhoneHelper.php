@@ -49,14 +49,14 @@ class PhoneHelper
     {
         if ($string = self::normalNumber($number)) {
             if (!$international) {
-                $string{0} = "8";
+                $string[0] = "8";
             }
             $cnt = substr_count($format, "x");
             $len = $cnt < 11 ? $cnt : 11;
             $string = strrev($string);
 
             for ($i  = $len; $i > 0; $i--) {
-                $format{strpos($format, "x")} = $string{$i - 1};
+                $format[strpos($format, "x")] = $string[$i - 1];
             }
             return $format;
         } else {
